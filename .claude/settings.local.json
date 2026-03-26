@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(pkill -f \"vite\")",
+      "Bash(taskkill //F //IM node.exe)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(python -m app.main)",
+      "Bash(netstat -ano)",
+      "Bash(findstr \":8000\")",
+      "Bash(taskkill /PID 33344 /F)",
+      "Bash(taskkill //PID 33344 //F)",
+      "Bash(python -m uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload)",
+      "Bash(curl -s http://127.0.0.1:8000/health)",
+      "Bash(curl -s http://127.0.0.1:8000/profile/clubs -H \"Authorization: Bearer invalid\")",
+      "Bash(curl -s -X POST http://127.0.0.1:8000/auth/login -H \"Content-Type: application/json\" -d \"{\"\"email\"\":\"\"demo@hachaskon.co.il\"\",\"\"password\"\":\"\"demo1234\"\"}\")",
+      "Bash(curl -s http://127.0.0.1:8000/profile/clubs -H \"Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzIiwiZXhwIjoxNzc0OTg2ODUzfQ.mSZF3svc6wFM_lR6OTTeXnW77pU_00FYFk9GBkQJjvk\")",
+      "Bash(taskkill //PID 29084 //F)",
+      "Bash(taskkill //PID 23452 //F)",
+      "Bash(curl -s http://127.0.0.1:8000/openapi.json)",
+      "Bash(python -c \"from app.routers import wishlist; print\\(''OK:'', wishlist.router.routes\\)\")",
+      "Bash(curl -sv http://127.0.0.1:8000/wishlist)",
+      "Bash(taskkill //PID 32120 //F)",
+      "Bash(python -c \"import subprocess; subprocess.run\\([''''taskkill'''', ''''/F'''', ''''/IM'''', ''''python.exe''''], capture_output=True\\)\")",
+      "Bash(python -c \":*)",
+      "Bash(pip install:*)"
+    ]
+  }
+}

@@ -1,0 +1,302 @@
+[
+  {
+    "product_name": "חלב תנובה 3%",
+    "category": "מוצרי חלב",
+    "barcode": "7290000000018",
+    "retailer": "שופרסל",
+    "membership": "אקסטרה",
+    "regular_price": 6.80,
+    "deal_price": 5.50,
+    "valid_until": "01/04/2026"
+  },
+  {
+    "product_name": "גבינה צהובה עמק",
+    "category": "מוצרי חלב",
+    "barcode": "7290000000025",
+    "retailer": "רמי לוי",
+    "membership": "המועדון",
+    "regular_price": 14.90,
+    "deal_price": 11.90,
+    "valid_until": "15/04/2026"
+  },
+  {
+    "product_name": "קוקה קולה 1.5 ליטר",
+    "category": "משקאות",
+    "barcode": "7290000000032",
+    "retailer": "יוחננוף",
+    "membership": "אין",
+    "regular_price": 9.00,
+    "deal_price": 6.50,
+    "valid_until": "10/04/2026"
+  },
+  {
+    "product_name": "קפה נמס טייסטרס צ'ויס",
+    "category": "יבשים",
+    "barcode": "7290000000049",
+    "retailer": "ויקטורי",
+    "membership": "ויקטורי",
+    "regular_price": 34.90,
+    "deal_price": 24.90,
+    "valid_until": "30/04/2026"
+  },
+  {
+    "product_name": "פסטה ברילה",
+    "category": "יבשים",
+    "barcode": "7290000000056",
+    "retailer": "חצי חינם",
+    "membership": "חצי חינם",
+    "regular_price": 7.90,
+    "deal_price": 4.90,
+    "valid_until": "05/04/2026"
+  },
+  {
+    "product_name": "שמן קנולה עץ הזית",
+    "category": "יבשים",
+    "barcode": "7290000000063",
+    "retailer": "שופרסל",
+    "membership": "אקסטרה",
+    "regular_price": 12.00,
+    "deal_price": 8.90,
+    "valid_until": "20/04/2026"
+  },
+  {
+    "product_name": "אורז פרסי סוגת",
+    "category": "יבשים",
+    "barcode": "7290000000070",
+    "retailer": "רמי לוי",
+    "membership": "המועדון",
+    "regular_price": 9.90,
+    "deal_price": 7.50,
+    "valid_until": "12/04/2026"
+  },
+  {
+    "product_name": "חטיף במבה אסם",
+    "category": "חטיפים",
+    "barcode": "7290000000087",
+    "retailer": "יוחננוף",
+    "membership": "אין",
+    "regular_price": 4.50,
+    "deal_price": 3.00,
+    "valid_until": "01/05/2026"
+  },
+  {
+    "product_name": "שוקולד מריר פרה",
+    "category": "ממתקים",
+    "barcode": "7290000000094",
+    "retailer": "ויקטורי",
+    "membership": "ויקטורי",
+    "regular_price": 5.50,
+    "deal_price": 3.90,
+    "valid_until": "15/04/2026"
+  },
+  {
+    "product_name": "נייר טואלט לילי",
+    "category": "טואלטיקה",
+    "barcode": "7290000000100",
+    "retailer": "שופרסל",
+    "membership": "אקסטרה",
+    "regular_price": 32.90,
+    "deal_price": 22.90,
+    "valid_until": "10/04/2026"
+  },
+  {
+    "product_name": "נוזל כלים פיירי",
+    "category": "ניקיון",
+    "barcode": "7290000000117",
+    "retailer": "רמי לוי",
+    "membership": "המועדון",
+    "regular_price": 11.90,
+    "deal_price": 8.90,
+    "valid_until": "25/04/2026"
+  },
+  {
+    "product_name": "קטשופ אסם",
+    "category": "רטבים",
+    "barcode": "7290000000124",
+    "retailer": "יוחננוף",
+    "membership": "אין",
+    "regular_price": 12.50,
+    "deal_price": 9.90,
+    "valid_until": "18/04/2026"
+  },
+  {
+    "product_name": "מיונז הלמנס",
+    "category": "רטבים",
+    "barcode": "7290000000131",
+    "retailer": "חצי חינם",
+    "membership": "חצי חינם",
+    "regular_price": 16.90,
+    "deal_price": 12.90,
+    "valid_until": "30/04/2026"
+  },
+  {
+    "product_name": "קמח חיטה לבן",
+    "category": "יבשים",
+    "barcode": "7290000000148",
+    "retailer": "ויקטורי",
+    "membership": "ויקטורי",
+    "regular_price": 4.00,
+    "deal_price": 2.50,
+    "valid_until": "01/06/2026"
+  },
+  {
+    "product_name": "סוכר לבן סוגת",
+    "category": "יבשים",
+    "barcode": "7290000000155",
+    "retailer": "שופרסל",
+    "membership": "אקסטרה",
+    "regular_price": 4.90,
+    "deal_price": 3.50,
+    "valid_until": "15/05/2026"
+  },
+  {
+    "product_name": "ביצים XL",
+    "category": "מקרר",
+    "barcode": "7290000000162",
+    "retailer": "רמי לוי",
+    "membership": "המועדון",
+    "regular_price": 16.50,
+    "deal_price": 13.90,
+    "valid_until": "05/04/2026"
+  },
+  {
+    "product_name": "יוגורט דנונה",
+    "category": "מוצרי חלב",
+    "barcode": "7290000000179",
+    "retailer": "יוחננוף",
+    "membership": "אין",
+    "regular_price": 4.90,
+    "deal_price": 3.50,
+    "valid_until": "10/04/2026"
+  },
+  {
+    "product_name": "קוטג' תנובה",
+    "category": "מוצרי חלב",
+    "barcode": "7290000000186",
+    "retailer": "שופרסל",
+    "membership": "אקסטרה",
+    "regular_price": 6.50,
+    "deal_price": 5.00,
+    "valid_until": "08/04/2026"
+  },
+  {
+    "product_name": "שישיית מים מינרליים",
+    "category": "משקאות",
+    "barcode": "7290000000193",
+    "retailer": "חצי חינם",
+    "membership": "חצי חינם",
+    "regular_price": 14.00,
+    "deal_price": 10.00,
+    "valid_until": "22/04/2026"
+  },
+  {
+    "product_name": "תה ויסוצקי",
+    "category": "משקאות חמים",
+    "barcode": "7290000000209",
+    "retailer": "ויקטורי",
+    "membership": "ויקטורי",
+    "regular_price": 24.90,
+    "deal_price": 17.90,
+    "valid_until": "30/04/2026"
+  },
+  {
+    "product_name": "דגני בוקר קורנפלקס",
+    "category": "יבשים",
+    "barcode": "7290000000216",
+    "retailer": "רמי לוי",
+    "membership": "המועדון",
+    "regular_price": 19.90,
+    "deal_price": 14.90,
+    "valid_until": "15/05/2026"
+  },
+  {
+    "product_name": "אבקת כביסה אריאל",
+    "category": "ניקיון",
+    "barcode": "7290000000223",
+    "retailer": "שופרסל",
+    "membership": "אקסטרה",
+    "regular_price": 45.00,
+    "deal_price": 35.00,
+    "valid_until": "01/05/2026"
+  },
+  {
+    "product_name": "מרכך כביסה בדין",
+    "category": "ניקיון",
+    "barcode": "7290000000230",
+    "retailer": "יוחננוף",
+    "membership": "אין",
+    "regular_price": 18.90,
+    "deal_price": 13.90,
+    "valid_until": "12/04/2026"
+  },
+  {
+    "product_name": "חטיף צ'יפס",
+    "category": "חטיפים",
+    "barcode": "7290000000247",
+    "retailer": "ויקטורי",
+    "membership": "ויקטורי",
+    "regular_price": 6.90,
+    "deal_price": 4.50,
+    "valid_until": "20/04/2026"
+  },
+  {
+    "product_name": "טונה סטארקיסט",
+    "category": "שימורים",
+    "barcode": "7290000000254",
+    "retailer": "חצי חינם",
+    "membership": "חצי חינם",
+    "regular_price": 26.00,
+    "deal_price": 19.90,
+    "valid_until": "01/07/2026"
+  },
+  {
+    "product_name": "זיתים מושחרים",
+    "category": "שימורים",
+    "barcode": "7290000000261",
+    "retailer": "רמי לוי",
+    "membership": "המועדון",
+    "regular_price": 8.50,
+    "deal_price": 6.00,
+    "valid_until": "10/05/2026"
+  },
+  {
+    "product_name": "נקניקיות טירת צבי",
+    "category": "בשר",
+    "barcode": "7290000000278",
+    "retailer": "שופרסל",
+    "membership": "אקסטרה",
+    "regular_price": 18.00,
+    "deal_price": 12.90,
+    "valid_until": "05/04/2026"
+  },
+  {
+    "product_name": "שניצל תירס טבעול",
+    "category": "קפואים",
+    "barcode": "7290000000285",
+    "retailer": "יוחננוף",
+    "membership": "אין",
+    "regular_price": 32.90,
+    "deal_price": 24.90,
+    "valid_until": "25/04/2026"
+  },
+  {
+    "product_name": "פיתות מאפייה",
+    "category": "לחם",
+    "barcode": "7290000000292",
+    "retailer": "חצי חינם",
+    "membership": "חצי חינם",
+    "regular_price": 10.00,
+    "deal_price": 7.90,
+    "valid_until": "02/04/2026"
+  },
+  {
+    "product_name": "מלח שולחן",
+    "category": "יבשים",
+    "barcode": "7290000000308",
+    "retailer": "ויקטורי",
+    "membership": "ויקטורי",
+    "regular_price": 2.50,
+    "deal_price": 1.50,
+    "valid_until": "31/12/2026"
+  }
+]
