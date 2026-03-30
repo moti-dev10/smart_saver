@@ -1,1 +1,0 @@
-{"access_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzIiwiZXhwIjoxNzc0OTg3MDM4fQ.cJCIrNNL4V1-Y5j40WHb4_6VzkiNO3Ejcqox7nrYPRE","token_type":"bearer","user":{"id":3,"email":"demo@hachaskon.co.il","name":"מנהל","avatar_url":null,"role":"admin"}}
