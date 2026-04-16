@@ -1,3 +1,4 @@
+import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.routers import search
@@ -19,9 +20,14 @@ app = FastAPI(
     version="0.1.0",
 )
 
+_frontend_url = os.getenv("FRONTEND_URL", "")
+_allowed_origins = ["http://localhost:3000", "http://localhost:5173"]
+if _frontend_url:
+    _allowed_origins.append(_frontend_url)
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://localhost:5173"],
+    allow_origins=_allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
