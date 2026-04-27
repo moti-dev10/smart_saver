@@ -311,14 +311,6 @@ function ClubToggleRow({ club, onToggle }) {
     }}>
       <div>
         <div style={{ fontSize: 14, fontWeight: 600, color: '#374151' }}>{club.name}</div>
-        {!club.is_member && club.signup_url && (
-          <a
-            href={club.signup_url} target="_blank" rel="noopener noreferrer"
-            style={{ fontSize: 12, color: '#2563eb', textDecoration: 'none' }}
-          >
-            הצטרף ←
-          </a>
-        )}
       </div>
       <Toggle on={club.is_member} onChange={onToggle} />
     </div>
