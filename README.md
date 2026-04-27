@@ -9,7 +9,7 @@
 
 | שירות | כתובת |
 |--------|--------|
-| פרונטאנד | https://frontend-indol-zeta-88.vercel.app |
+| פרונטאנד | https://smart-saver-7lmk.vercel.app |
 | בקאנד | https://smart-saver-8wde.onrender.com |
 | תיעוד API | https://smart-saver-8wde.onrender.com/docs |
 
