@@ -100,6 +100,18 @@ function MainApp() {
   const [activeBroadCat, setActiveBroadCat] = useState(null)
   const [featured, setFeatured] = useState(null)
   const [wishlistIds, setWishlistIds] = useState(new Set())
+  const [userClubs, setUserClubs] = useState([])
+
+  function refreshUserClubs() {
+    if (!token) { setUserClubs([]); return }
+    fetch('/profile/clubs', { headers: { Authorization: `Bearer ${token}` } })
+      .then(r => r.ok ? r.json() : [])
+      .then(data => setUserClubs(data.filter(c => c.is_member)))
+      .catch(() => {})
+  }
+
+  // טעינת מועדוני המשתמש
+  useEffect(() => { refreshUserClubs() }, [token])
 
   // טעינת קטגוריות בהפעלה
   useEffect(() => {
@@ -281,8 +293,12 @@ function MainApp() {
       {user && (
         <div style={{ background: '#fff', borderBottom: '1px solid #e5e7eb', padding: '10px 24px', display: 'flex', alignItems: 'center', gap: 8, justifyContent: 'center', fontSize: 13, color: '#4b5563', flexWrap: 'wrap' }}>
           <span>המועדונים שלך:</span>
-          <span style={{ background: '#dcfce7', color: '#15803d', border: '1px solid #bbf7d0', borderRadius: 20, padding: '2px 10px', fontWeight: 600, fontSize: 12 }}>✓ מועדון KSP</span>
-          <span style={{ background: '#dcfce7', color: '#15803d', border: '1px solid #bbf7d0', borderRadius: 20, padding: '2px 10px', fontWeight: 600, fontSize: 12 }}>✓ BUG Club</span>
+          {userClubs.length === 0
+            ? <span style={{ color: '#9ca3af', fontSize: 12 }}>לא נרשמת למועדונים עדיין</span>
+            : userClubs.map(c => (
+                <span key={c.id} style={{ background: '#dcfce7', color: '#15803d', border: '1px solid #bbf7d0', borderRadius: 20, padding: '2px 10px', fontWeight: 600, fontSize: 12 }}>✓ {c.name}</span>
+              ))
+          }
         </div>
       )}
 
@@ -398,7 +414,7 @@ function MainApp() {
       </main>
 
       {/* מגירת פרופיל */}
-      <ProfileDrawer open={profileOpen} onClose={() => setProfileOpen(false)} />
+      <ProfileDrawer open={profileOpen} onClose={() => setProfileOpen(false)} onClubsChange={refreshUserClubs} />
     </div>
   )
 }

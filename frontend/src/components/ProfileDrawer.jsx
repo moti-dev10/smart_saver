@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { useAuth } from '../context/AuthContext'
 
-export default function ProfileDrawer({ open, onClose }) {
+export default function ProfileDrawer({ open, onClose, onClubsChange }) {
   const { user, token, logout } = useAuth()
   const [tab, setTab] = useState('clubs')
   const [clubs, setClubs] = useState([])
@@ -61,6 +61,7 @@ export default function ProfileDrawer({ open, onClose }) {
 
     try {
       await fetch(endpoint, { method, headers: headers() })
+      onClubsChange?.()
     } catch {
       // החזר את המצב הקודם אם נכשל
       setClubs(prev =>
