@@ -28,10 +28,13 @@ export default function SuggestModal({ onClose }) {
           suggested_price: price ? +price : null,
         }),
       })
-      if (!res.ok) throw new Error()
+      if (!res.ok) {
+        const text = await res.text()
+        throw new Error(`${res.status}: ${text}`)
+      }
       setSubmitted(true)
-    } catch {
-      setError('שגיאה בשליחה — נסה שוב')
+    } catch (e) {
+      setError(`שגיאה: ${e.message}`)
     } finally {
       setLoading(false)
     }
