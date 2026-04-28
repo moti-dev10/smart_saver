@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import { useAuth } from '../context/AuthContext'
 
-export default function ReportModal({ deal, productName, onClose }) {
+export default function SuggestModal({ onClose }) {
   const { token } = useAuth()
   const [notes, setNotes] = useState('')
+  const [retailer, setRetailer] = useState('')
+  const [price, setPrice] = useState('')
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
@@ -20,9 +22,10 @@ export default function ReportModal({ deal, productName, onClose }) {
           ...(token ? { Authorization: `Bearer ${token}` } : {}),
         },
         body: JSON.stringify({
-          type: 'deal_wrong',
+          type: 'deal_suggest',
           notes,
-          deal_id: deal.id ?? null,
+          suggested_retailer: retailer || null,
+          suggested_price: price ? +price : null,
         }),
       })
       if (!res.ok) throw new Error()
@@ -39,10 +42,10 @@ export default function ReportModal({ deal, productName, onClose }) {
       <div style={box}>
         {submitted ? (
           <div style={{ textAlign: 'center', padding: '20px 0' }}>
-            <div style={{ fontSize: 48, marginBottom: 12 }}>✅</div>
-            <h3 style={{ fontSize: 18, fontWeight: 700, marginBottom: 8 }}>תודה על הדיווח!</h3>
+            <div style={{ fontSize: 48, marginBottom: 12 }}>💡</div>
+            <h3 style={{ fontSize: 18, fontWeight: 700, marginBottom: 8 }}>תודה על ההצעה!</h3>
             <p style={{ fontSize: 14, color: '#64748b', marginBottom: 20 }}>
-              הדיווח שלך יועבר לצוות שלנו ויטופל בקרוב.
+              נבדוק את ההטבה ונוסיף אותה אם היא תקפה.
             </p>
             <button onClick={onClose} style={btnPrimary}>סגור</button>
           </div>
@@ -50,22 +53,43 @@ export default function ReportModal({ deal, productName, onClose }) {
           <>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 16 }}>
               <div>
-                <h3 style={{ fontSize: 17, fontWeight: 700 }}>דיווח על הטבה שגויה</h3>
+                <h3 style={{ fontSize: 17, fontWeight: 700 }}>💡 הצעת הטבה חדשה</h3>
                 <p style={{ fontSize: 13, color: '#64748b', marginTop: 2 }}>
-                  {productName} · {deal.retailer_name}
+                  ראית הטבה שלא מופיעה אצלנו? ספר לנו!
                 </p>
               </div>
               <button onClick={onClose} style={{ background: 'none', border: 'none', fontSize: 20, cursor: 'pointer', color: '#94a3b8' }}>✕</button>
             </div>
 
             <label style={labelStyle}>
-              מה השגיאה?
+              פרטי ההטבה
               <textarea
                 value={notes}
                 onChange={e => setNotes(e.target.value)}
-                placeholder="למשל: המחיר עלה, ההטבה פגה, המוצר לא במלאי..."
+                placeholder="למשל: ראיתי מקרר סמסונג ב-KSP עם מועדון ב-3,990 ₪..."
                 rows={3}
                 style={{ ...inputStyle, resize: 'none', marginTop: 6 }}
+              />
+            </label>
+
+            <label style={{ ...labelStyle, marginTop: 12 }}>
+              שם הרשת (אופציונלי)
+              <input
+                value={retailer}
+                onChange={e => setRetailer(e.target.value)}
+                placeholder="למשל: KSP, BUG..."
+                style={{ ...inputStyle, marginTop: 6 }}
+              />
+            </label>
+
+            <label style={{ ...labelStyle, marginTop: 12 }}>
+              מחיר (שקל, אופציונלי)
+              <input
+                type="number"
+                value={price}
+                onChange={e => setPrice(e.target.value)}
+                placeholder="0"
+                style={{ ...inputStyle, marginTop: 6 }}
               />
             </label>
 
@@ -75,7 +99,7 @@ export default function ReportModal({ deal, productName, onClose }) {
 
             <div style={{ display: 'flex', gap: 10, marginTop: 20 }}>
               <button onClick={submit} disabled={!notes.trim() || loading} style={btnPrimary}>
-                {loading ? 'שולח...' : 'שלח דיווח'}
+                {loading ? 'שולח...' : 'שלח הצעה'}
               </button>
               <button onClick={onClose} style={btnSecondary}>ביטול</button>
             </div>

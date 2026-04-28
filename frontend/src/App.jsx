@@ -5,6 +5,7 @@ import SearchBar from './components/SearchBar'
 import SearchFilters from './components/SearchFilters'
 import ProductCard from './components/ProductCard'
 import ProfileDrawer from './components/ProfileDrawer'
+import SuggestModal from './components/SuggestModal'
 import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
 import AdminLayout from './pages/admin/AdminLayout'
@@ -91,6 +92,7 @@ function MainApp() {
   const [authPage, setAuthPage] = useState(null)
   const [showAdmin, setShowAdmin] = useState(false)
   const [profileOpen, setProfileOpen] = useState(false)
+  const [suggestOpen, setSuggestOpen] = useState(false)
   const [results, setResults] = useState(null)
   const [searching, setSearching] = useState(false)
   const [error, setError] = useState(null)
@@ -415,6 +417,26 @@ function MainApp() {
 
       {/* מגירת פרופיל */}
       <ProfileDrawer open={profileOpen} onClose={() => setProfileOpen(false)} onClubsChange={refreshUserClubs} />
+      {suggestOpen && <SuggestModal onClose={() => setSuggestOpen(false)} />}
+
+      {/* כפתור צף — הצעת הטבה */}
+      <button
+        onClick={() => setSuggestOpen(true)}
+        title="הצעת הטבה חדשה"
+        style={{
+          position: 'fixed', bottom: 24, left: 24,
+          background: '#2563eb', color: '#fff',
+          border: 'none', borderRadius: 50,
+          padding: '12px 20px',
+          fontSize: 14, fontWeight: 700,
+          cursor: 'pointer',
+          boxShadow: '0 4px 16px rgba(37,99,235,0.4)',
+          zIndex: 100,
+          display: 'flex', alignItems: 'center', gap: 8,
+        }}
+      >
+        💡 הצעת הטבה
+      </button>
     </div>
   )
 }
