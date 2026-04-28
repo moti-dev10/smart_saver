@@ -11,8 +11,8 @@ const NAV = [
   { key: 'import',    label: 'ייבוא נתונים',  icon: '📥' },
 ]
 
-export default function AdminLayout({ page, onNav, children, pendingReportsCount = 0 }) {
-  const { user, logout } = useAuth()
+export default function AdminLayout({ page, onNav, onExit, children, pendingReportsCount = 0 }) {
+  const { user } = useAuth()
   const [collapsed, setCollapsed] = useState(false)
 
   return (
@@ -100,8 +100,8 @@ export default function AdminLayout({ page, onNav, children, pendingReportsCount
             <span style={{ fontSize: 11, background: user?.role === 'admin' ? '#dbeafe' : '#dcfce7', color: user?.role === 'admin' ? '#1d4ed8' : '#15803d', padding: '2px 8px', borderRadius: 10, fontWeight: 700 }}>
               {user?.role === 'admin' ? 'מנהל ראשי' : user?.role === 'editor' ? 'עורך' : 'משתמש'}
             </span>
-            <button onClick={logout} style={{ background: '#f1f5f9', border: 'none', color: '#64748b', padding: '6px 12px', borderRadius: 8, fontSize: 13, cursor: 'pointer' }}>
-              יציאה
+            <button onClick={onExit} style={{ background: '#f1f5f9', border: 'none', color: '#64748b', padding: '6px 12px', borderRadius: 8, fontSize: 13, cursor: 'pointer' }}>
+              ← חזרה לאתר
             </button>
           </div>
         </header>

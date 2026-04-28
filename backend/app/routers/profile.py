@@ -18,7 +18,6 @@ class ClubInfo(BaseModel):
     name: str
     retailer_name: str
     retailer_logo: Optional[str]
-    signup_url: Optional[str]
     is_member: bool
 
     model_config = {"from_attributes": True}
@@ -58,7 +57,6 @@ def get_clubs(
             name=c.name,
             retailer_name=c.retailer.name,
             retailer_logo=c.retailer.logo_url,
-            signup_url=c.signup_url,
             is_member=c.id in member_ids,
         )
         for c in clubs

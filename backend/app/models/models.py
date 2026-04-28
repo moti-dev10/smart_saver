@@ -40,7 +40,6 @@ class Club(Base):
     id = Column(Integer, primary_key=True, index=True)
     retailer_id = Column(Integer, ForeignKey("retailers.id"), nullable=False)
     name = Column(String, nullable=False)
-    signup_url = Column(String)
 
     retailer = relationship("Retailer", back_populates="clubs")
     deals = relationship("Deal", back_populates="club")

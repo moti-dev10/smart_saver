@@ -66,7 +66,7 @@ const BROAD_CATEGORIES = [
   { label: 'ילדים',      icon: '🧸', sub: [] },
 ]
 
-function AdminApp() {
+function AdminApp({ onExit }) {
   const [adminPage, setAdminPage] = useState('dashboard')
   const [pendingCount, setPendingCount] = useState(0)
   const { token } = useAuth()
@@ -82,7 +82,7 @@ function AdminApp() {
   }, [token])
 
   const pages = { dashboard: <Dashboard onNav={setAdminPage} />, products: <Products />, deals: <Deals />, users: <Users />, reports: <Reports />, retailers: <Retailers />, import: <Import /> }
-  return <AdminLayout page={adminPage} onNav={setAdminPage} pendingReportsCount={pendingCount}>{pages[adminPage]}</AdminLayout>
+  return <AdminLayout page={adminPage} onNav={setAdminPage} onExit={onExit} pendingReportsCount={pendingCount}>{pages[adminPage]}</AdminLayout>
 }
 
 const DEFAULT_FILTERS = { category: null, min_price: null, max_price: null, sort_by: 'price_asc' }
@@ -202,7 +202,7 @@ function MainApp() {
   if (loading) return <div style={{ textAlign: 'center', padding: 60, fontSize: 16 }}>טוען...</div>
 
   const isDemoAdmin = window.location.hash === '#admin'
-  if (showAdmin || isDemoAdmin) return <AdminApp />
+  if (showAdmin || isDemoAdmin) return <AdminApp onExit={() => { setShowAdmin(false); window.location.hash = '' }} />
 
   if (authPage) {
     return (
