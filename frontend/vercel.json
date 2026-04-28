@@ -1,10 +1,13 @@
 {
   "rewrites": [
+    { "source": "/search",         "destination": "https://smart-saver-8wde.onrender.com/search" },
     { "source": "/search/:path*",  "destination": "https://smart-saver-8wde.onrender.com/search/:path*" },
     { "source": "/auth/:path*",    "destination": "https://smart-saver-8wde.onrender.com/auth/:path*" },
     { "source": "/admin/:path*",   "destination": "https://smart-saver-8wde.onrender.com/admin/:path*" },
+    { "source": "/reports",        "destination": "https://smart-saver-8wde.onrender.com/reports" },
     { "source": "/reports/:path*", "destination": "https://smart-saver-8wde.onrender.com/reports/:path*" },
     { "source": "/profile/:path*", "destination": "https://smart-saver-8wde.onrender.com/profile/:path*" },
+    { "source": "/wishlist",       "destination": "https://smart-saver-8wde.onrender.com/wishlist" },
     { "source": "/wishlist/:path*","destination": "https://smart-saver-8wde.onrender.com/wishlist/:path*" },
     { "source": "/health",         "destination": "https://smart-saver-8wde.onrender.com/health" }
   ]
