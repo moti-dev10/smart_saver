@@ -10,15 +10,54 @@ from app.schemas.schemas import SearchResult, ProductResult, DealResult
 
 router = APIRouter()
 
+# מילון תרגום — עברית לאנגלית לצורך חיפוש
+SEARCH_SYNONYMS: dict[str, str] = {
+    "אייפון": "iPhone",
+    "אפל": "Apple",
+    "סמסונג": "Samsung",
+    "סוני": "Sony",
+    "פלייסטיישן": "PlayStation",
+    "פלייסטיישין": "PlayStation",
+    "פס5": "PS5",
+    "נינטנדו": "Nintendo",
+    "מיקרוסופט": "Microsoft",
+    "אירפודס": "AirPods",
+    "אייפד": "iPad",
+    "מקבוק": "MacBook",
+    "דרימי": "Dreame",
+    "טינקו": "Tineco",
+    "דייסון": "Dyson",
+    "בוש": "Bosch",
+    "סימנס": "Siemens",
+    "מיצובישי": "Mitsubishi",
+    "מיטסובישי": "Mitsubishi",
+    "פיליפס": "Philips",
+    "פנסוניק": "Panasonic",
+    "לג": "LG",
+    "נינג'ה": "Ninja",
+    "ניל'ג": "Ninja",
+}
+
+def translate_query(q: str) -> str:
+    """מתרגם מונחי חיפוש עבריים למקבילות האנגליות."""
+    result = q
+    for heb, eng in SEARCH_SYNONYMS.items():
+        result = result.replace(heb, eng)
+    return result
+
 
 @router.get("/search/suggestions")
 def search_suggestions(
     q: str = Query(..., min_length=1),
     db: Session = Depends(get_db),
 ):
+    q_translated = translate_query(q)
     products = (
         db.query(Product.name)
-        .filter(Product.name.ilike(f"%{q}%"))
+        .filter(or_(
+            Product.name.ilike(f"%{q}%"),
+            Product.name.ilike(f"%{q_translated}%"),
+        ))
         .limit(6)
         .all()
     )
@@ -130,7 +169,11 @@ def search_products(
     query_obj = db.query(Product)
 
     if q:
-        query_obj = query_obj.filter(Product.name.ilike(f"%{q}%"))
+        q_translated = translate_query(q)
+        query_obj = query_obj.filter(or_(
+            Product.name.ilike(f"%{q}%"),
+            Product.name.ilike(f"%{q_translated}%"),
+        ))
 
     if categories:
         cat_list = [c.strip() for c in categories.split(',')]
