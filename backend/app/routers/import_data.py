@@ -232,14 +232,17 @@ async def save_import(
             errors.append(f"שורה {i}: חסרת רשת")
             skipped += 1
             continue
-        if not row.get("regular_price"):
-            errors.append(f"שורה {i}: חסר מחיר רגיל")
+        if not row.get("regular_price") and not row.get("deal_price"):
+            errors.append(f"שורה {i}: חסר מחיר")
             skipped += 1
             continue
+        if row.get("deal_price") and not row.get("regular_price"):
+            errors.append(f"שורה {i}: יש מחיר מועדון אך חסר מחיר רגיל (נדרש לחישוב חיסכון)")
+            skipped += 1
+            continue
+        # אם יש רק מחיר רגיל — אין הנחה, deal_price = regular_price
         if not row.get("deal_price"):
-            errors.append(f"שורה {i}: חסר מחיר מבצע/מועדון")
-            skipped += 1
-            continue
+            row["deal_price"] = row["regular_price"]
 
         regular_price = parse_float(row["regular_price"])
         deal_price = parse_float(row["deal_price"])
