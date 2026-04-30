@@ -14,6 +14,20 @@ from app.models import models as _models  # noqa — מוודא שכל המוד�
 # יצירת כל הטבלאות החסרות בהפעלת השרת (לא מוחק נתונים קיימים)
 _models.Base.metadata.create_all(bind=engine)
 
+# migrations — הוספת עמודות חדשות לטבלאות קיימות
+from sqlalchemy import text
+def _run_migrations():
+    with engine.connect() as conn:
+        for sql in [
+            "ALTER TABLE products ADD COLUMN IF NOT EXISTS search_keywords VARCHAR",
+        ]:
+            try:
+                conn.execute(text(sql))
+                conn.commit()
+            except Exception:
+                pass
+_run_migrations()
+
 app = FastAPI(
     title="חסכון חכם API",
     description="אגרגטור השוואת מחירים עם הטבות מועדוני לקוחות",
