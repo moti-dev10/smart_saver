@@ -17,31 +17,50 @@ router = APIRouter(prefix="/admin/import", tags=["admin"])
 
 COLUMN_MAP: Dict[str, str] = {
     # מזהים
-    "deal_id": "deal_id", "מזהה עסקה": "deal_id",
-    "product_id": "product_id", "מזהה מוצר": "product_id",
+    "deal_id": "deal_id", "מזהה עסקה": "deal_id", "id עסקה": "deal_id",
+    "product_id": "product_id", "מזהה מוצר": "product_id", "id מוצר": "product_id",
     "retailer_id": "retailer_id", "club_id": "club_id",
     # מוצר
-    "שם מוצר": "product_name", "מוצר": "product_name", "product": "product_name",
-    "name": "product_name", "product_name": "product_name", "item": "product_name",
-    "שם": "product_name",
-    "קטגוריה": "category", "category": "category", "cat": "category",
-    "ברקוד": "barcode", "barcode": "barcode",
-    "תמונה": "image_url", "image_url": "image_url", "image": "image_url", "img": "image_url",
-    # רשת
-    "רשת": "retailer_name", "חנות": "retailer_name", "retailer": "retailer_name",
-    "retailer_name": "retailer_name", "store": "retailer_name",
+    "שם מוצר": "product_name", "מוצר": "product_name", "שם": "product_name",
+    "product": "product_name", "product_name": "product_name", "name": "product_name",
+    "item": "product_name", "title": "product_name", "כותרת": "product_name",
+    "דגם": "product_name", "model": "product_name",
+    # קטגוריה
+    "קטגוריה": "category", "סוג": "category", "סוג מוצר": "category",
+    "category": "category", "cat": "category", "type": "category",
+    # ברקוד
+    "ברקוד": "barcode", "barcode": "barcode", "ean": "barcode", "upc": "barcode", "קוד": "barcode",
+    # תמונה
+    "תמונה": "image_url", "קישור תמונה": "image_url", "לוגו": "image_url",
+    "image_url": "image_url", "image": "image_url", "img": "image_url", "photo": "image_url", "picture": "image_url",
+    # רשת / חנות
+    "רשת": "retailer_name", "חנות": "retailer_name", "ספק": "retailer_name",
+    "שם חנות": "retailer_name", "שם רשת": "retailer_name", "מוכר": "retailer_name",
+    "retailer": "retailer_name", "retailer_name": "retailer_name",
+    "store": "retailer_name", "shop": "retailer_name", "vendor": "retailer_name", "seller": "retailer_name",
     # מועדון
-    "מועדון": "club_name", "שם מועדון": "club_name", "club": "club_name", "club_name": "club_name",
-    # מחירים
+    "מועדון": "club_name", "שם מועדון": "club_name", "מועדון קניות": "club_name",
+    "הטבת מועדון": "club_name", "כרטיס": "club_name",
+    "club": "club_name", "club_name": "club_name", "membership": "club_name",
+    # מחיר רגיל
     "מחיר רגיל": "regular_price", "מחיר מקורי": "regular_price", "מחיר": "regular_price",
+    "מחיר מלא": "regular_price", "מחיר לפני הנחה": "regular_price", "מחיר קטלוגי": "regular_price",
     "regular_price": "regular_price", "price": "regular_price", "original_price": "regular_price",
-    "מחיר מבצע": "deal_price", "מחיר עם מועדון": "deal_price", "מחיר הטבה": "deal_price", "מבצע": "deal_price",
+    "full_price": "regular_price", "list_price": "regular_price", "msrp": "regular_price",
+    # מחיר מבצע / מועדון
+    "מחיר מבצע": "deal_price", "מחיר עם מועדון": "deal_price", "מחיר הטבה": "deal_price",
+    "מבצע": "deal_price", "מחיר חבר": "deal_price", "מחיר מיוחד": "deal_price",
+    "הנחה": "deal_price", "מחיר אחרי הנחה": "deal_price",
     "deal_price": "deal_price", "sale_price": "deal_price", "discount_price": "deal_price",
-    # תאריכים
-    "תוקף מ": "valid_from", "מתאריך": "valid_from", "valid_from": "valid_from",
-    "start_date": "valid_from", "from_date": "valid_from",
-    "תוקף עד": "valid_until", "תוקף עד (yyyy-mm-dd)": "valid_until", "עד תאריך": "valid_until", "תוקף": "valid_until",
+    "offer_price": "deal_price", "promo_price": "deal_price", "final_price": "deal_price",
+    # תאריך התחלה
+    "תוקף מ": "valid_from", "מתאריך": "valid_from", "תחילת מבצע": "valid_from", "מתי מתחיל": "valid_from",
+    "valid_from": "valid_from", "start_date": "valid_from", "from_date": "valid_from", "date_from": "valid_from",
+    # תאריך סיום
+    "תוקף עד": "valid_until", "תוקף עד (yyyy-mm-dd)": "valid_until",
+    "עד תאריך": "valid_until", "תוקף": "valid_until", "סיום מבצע": "valid_until", "עד מתי": "valid_until",
     "valid_until": "valid_until", "end_date": "valid_until", "expiry": "valid_until",
+    "expiry_date": "valid_until", "date_until": "valid_until", "to_date": "valid_until",
 }
 
 
