@@ -31,16 +31,16 @@ COLUMN_MAP: Dict[str, str] = {
     "רשת": "retailer_name", "חנות": "retailer_name", "retailer": "retailer_name",
     "retailer_name": "retailer_name", "store": "retailer_name",
     # מועדון
-    "מועדון": "club_name", "club": "club_name", "club_name": "club_name",
+    "מועדון": "club_name", "שם מועדון": "club_name", "club": "club_name", "club_name": "club_name",
     # מחירים
     "מחיר רגיל": "regular_price", "מחיר מקורי": "regular_price", "מחיר": "regular_price",
     "regular_price": "regular_price", "price": "regular_price", "original_price": "regular_price",
-    "מחיר מבצע": "deal_price", "מחיר הטבה": "deal_price", "מבצע": "deal_price",
+    "מחיר מבצע": "deal_price", "מחיר עם מועדון": "deal_price", "מחיר הטבה": "deal_price", "מבצע": "deal_price",
     "deal_price": "deal_price", "sale_price": "deal_price", "discount_price": "deal_price",
     # תאריכים
     "תוקף מ": "valid_from", "מתאריך": "valid_from", "valid_from": "valid_from",
     "start_date": "valid_from", "from_date": "valid_from",
-    "תוקף עד": "valid_until", "עד תאריך": "valid_until", "תוקף": "valid_until",
+    "תוקף עד": "valid_until", "תוקף עד (yyyy-mm-dd)": "valid_until", "עד תאריך": "valid_until", "תוקף": "valid_until",
     "valid_until": "valid_until", "end_date": "valid_until", "expiry": "valid_until",
 }
 
