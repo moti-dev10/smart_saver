@@ -153,6 +153,15 @@ def parse_file(file_bytes: bytes, filename: str) -> List[Dict[str, Any]]:
 
 # ── Endpoints ──────────────────────────────────────────────────────────────
 
+def row_has_content(row: Dict[str, Any]) -> bool:
+    mapped = map_row(row)
+    return bool(
+        (mapped.get("product_name") or mapped.get("product_id")) and
+        (mapped.get("retailer_name") or mapped.get("retailer_id")) and
+        mapped.get("regular_price")
+    )
+
+
 @router.post("/preview")
 async def preview_import(
     file: UploadFile = File(...),
@@ -167,9 +176,14 @@ async def preview_import(
     headers = [h for h in rows[0].keys() if h is not None]
     col_mapping = get_column_mapping(headers)
 
+    rows_with_meta = [
+        {"index": i, "has_content": row_has_content(row), "data": row}
+        for i, row in enumerate(rows)
+    ]
+
     return {
         "total_rows": len(rows),
-        "preview_rows": rows[:20],
+        "rows": rows_with_meta,
         "headers": headers,
         "column_mapping": col_mapping,
     }
@@ -178,6 +192,7 @@ async def preview_import(
 @router.post("/save")
 async def save_import(
     file: UploadFile = File(...),
+    selected_indices: str = "",
     db: Session = Depends(get_db),
     _=Depends(require_editor),
 ):
@@ -186,6 +201,14 @@ async def save_import(
 
     if not rows:
         raise HTTPException(400, "הקובץ ריק")
+
+    # סנן לפי האינדקסים הנבחרים
+    if selected_indices:
+        idx_set = {int(x) for x in selected_indices.split(",") if x.strip().isdigit()}
+        rows = [r for i, r in enumerate(rows) if i in idx_set]
+
+    if not rows:
+        raise HTTPException(400, "לא נבחרו שורות לייבוא")
 
     imported = 0
     updated = 0
@@ -209,7 +232,7 @@ async def save_import(
             skipped += 1
             continue
         if not row.get("deal_price"):
-            errors.append(f"שורה {i}: חסר מחיר מבצע")
+            errors.append(f"שורה {i}: חסר מחיר מבצע/מועדון")
             skipped += 1
             continue
 
