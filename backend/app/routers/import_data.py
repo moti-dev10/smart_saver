@@ -223,7 +223,7 @@ async def save_import(
     for i, raw_row in enumerate(rows, start=2):  # שורה 1 = כותרות
         row = map_row(raw_row)
 
-        # ── ולידציה ─────────────────────────────────────────────────
+        # ── ולידציה מינימלית — רק שם מוצר ורשת חובה ──────────────────
         if not (row.get("product_name") or row.get("product_id")):
             errors.append(f"שורה {i}: חסר שם מוצר")
             skipped += 1
@@ -232,17 +232,12 @@ async def save_import(
             errors.append(f"שורה {i}: חסרת רשת")
             skipped += 1
             continue
-        if not row.get("regular_price") and not row.get("deal_price"):
-            errors.append(f"שורה {i}: חסר מחיר")
-            skipped += 1
-            continue
-        if row.get("deal_price") and not row.get("regular_price"):
-            errors.append(f"שורה {i}: יש מחיר מועדון אך חסר מחיר רגיל (נדרש לחישוב חיסכון)")
-            skipped += 1
-            continue
-        # אם יש רק מחיר רגיל — אין הנחה, deal_price = regular_price
-        if not row.get("deal_price"):
+        # אם יש רק מחיר רגיל — deal_price = regular_price
+        if row.get("regular_price") and not row.get("deal_price"):
             row["deal_price"] = row["regular_price"]
+        # אם יש רק deal_price — regular_price = deal_price
+        if row.get("deal_price") and not row.get("regular_price"):
+            row["regular_price"] = row["deal_price"]
 
         regular_price = parse_float(row["regular_price"])
         deal_price = parse_float(row["deal_price"])
