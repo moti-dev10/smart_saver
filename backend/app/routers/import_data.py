@@ -64,6 +64,8 @@ COLUMN_MAP: Dict[str, str] = {
     "עד תאריך": "valid_until", "תוקף": "valid_until", "סיום מבצע": "valid_until", "עד מתי": "valid_until",
     "valid_until": "valid_until", "end_date": "valid_until", "expiry": "valid_until",
     "expiry_date": "valid_until", "date_until": "valid_until", "to_date": "valid_until",
+    # הערות (עמודת תיעוד — לא נשמרת במסד)
+    "הערות": "notes", "הערה": "notes", "תיאור": "notes", "notes": "notes", "comment": "notes", "remarks": "notes",
 }
 
 
