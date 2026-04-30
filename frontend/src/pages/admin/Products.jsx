@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useAuth } from '../../context/AuthContext'
 
-const EMPTY = { name: '', category: '', barcode: '', image_url: '' }
+const EMPTY = { name: '', category: '', barcode: '', image_url: '', search_keywords: '' }
 
 export default function Products() {
   const { token } = useAuth()
@@ -30,7 +30,7 @@ export default function Products() {
   const filtered = products.filter(p => p.name.includes(search) || (p.category || '').includes(search))
 
   function openAdd()  { setForm(EMPTY); setFreeText(false); setModal('add') }
-  function openEdit(p){ setForm({ name: p.name, category: p.category || '', barcode: p.barcode || '', image_url: p.image_url || '' }); setFreeText(false); setModal(p) }
+  function openEdit(p){ setForm({ name: p.name, category: p.category || '', barcode: p.barcode || '', image_url: p.image_url || '', search_keywords: p.search_keywords || '' }); setFreeText(false); setModal(p) }
 
   async function save() {
     setSaving(true)
@@ -137,6 +137,11 @@ export default function Products() {
 
               <label style={labelS}>ברקוד <input value={form.barcode} onChange={e => setForm(f => ({ ...f, barcode: e.target.value }))} style={inputS} /></label>
               <label style={labelS}>קישור תמונה <input value={form.image_url} onChange={e => setForm(f => ({ ...f, image_url: e.target.value }))} style={inputS} placeholder="https://..." /></label>
+              <label style={labelS}>
+                מילות חיפוש
+                <input value={form.search_keywords} onChange={e => setForm(f => ({ ...f, search_keywords: e.target.value }))} style={inputS} placeholder="אייפון, Apple, iPhone 17, טלפון..." />
+                <span style={{ fontSize: 11, color: '#94a3b8', marginTop: 2 }}>מילים מופרדות בפסיק — לחיפוש בעברית ואנגלית</span>
+              </label>
             </div>
             <div style={{ display: 'flex', gap: 10, marginTop: 20 }}>
               <button onClick={save} disabled={!form.name || saving} style={btn('#3b82f6')}>{saving ? 'שומר...' : 'שמור'}</button>

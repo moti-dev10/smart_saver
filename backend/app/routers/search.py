@@ -57,6 +57,8 @@ def search_suggestions(
         .filter(or_(
             Product.name.ilike(f"%{q}%"),
             Product.name.ilike(f"%{q_translated}%"),
+            Product.search_keywords.ilike(f"%{q}%"),
+            Product.search_keywords.ilike(f"%{q_translated}%"),
         ))
         .limit(6)
         .all()
@@ -173,6 +175,8 @@ def search_products(
         query_obj = query_obj.filter(or_(
             Product.name.ilike(f"%{q}%"),
             Product.name.ilike(f"%{q_translated}%"),
+            Product.search_keywords.ilike(f"%{q}%"),
+            Product.search_keywords.ilike(f"%{q_translated}%"),
         ))
 
     if categories:

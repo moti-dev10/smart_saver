@@ -54,6 +54,7 @@ class Product(Base):
     category = Column(String)
     barcode = Column(String)
     image_url = Column(String)
+    search_keywords = Column(String)  # מילות חיפוש נרדפות, מופרדות בפסיק
 
     deals = relationship("Deal", back_populates="product")
 

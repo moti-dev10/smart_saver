@@ -18,13 +18,14 @@ class ProductIn(BaseModel):
     category: Optional[str] = None
     barcode: Optional[str] = None
     image_url: Optional[str] = None
+    search_keywords: Optional[str] = None
 
 
 @router.get("/products")
 def list_products(db: Session = Depends(get_db), _=Depends(require_editor)):
     products = db.query(Product).all()
     return [{"id": p.id, "name": p.name, "category": p.category, "barcode": p.barcode,
-             "image_url": p.image_url, "deals": len(p.deals)} for p in products]
+             "image_url": p.image_url, "search_keywords": p.search_keywords, "deals": len(p.deals)} for p in products]
 
 
 @router.post("/products", status_code=201)
