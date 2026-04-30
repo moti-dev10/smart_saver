@@ -45,8 +45,11 @@ COLUMN_MAP: Dict[str, str] = {
 }
 
 
-def _lookup(col: str) -> Optional[str]:
-    return COLUMN_MAP.get(col.strip()) or COLUMN_MAP.get(col.strip().lower())
+def _lookup(col) -> Optional[str]:
+    if col is None:
+        return None
+    col = str(col).strip()
+    return COLUMN_MAP.get(col) or COLUMN_MAP.get(col.lower())
 
 
 def map_row(raw: Dict[str, Any]) -> Dict[str, Any]:
@@ -142,7 +145,7 @@ async def preview_import(
     if not rows:
         raise HTTPException(400, "הקובץ ריק")
 
-    headers = list(rows[0].keys())
+    headers = [h for h in rows[0].keys() if h is not None]
     col_mapping = get_column_mapping(headers)
 
     return {
