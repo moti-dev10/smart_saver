@@ -50,7 +50,9 @@ export default function Import() {
         headers: { Authorization: `Bearer ${token}` },
         body: fd,
       })
-      const data = await res.json()
+      const text = await res.text()
+      let data = {}
+      try { data = JSON.parse(text) } catch { throw new Error(`שגיאת שרת (${res.status}): ${text.slice(0, 120)}`) }
       if (!res.ok) throw new Error(data.detail || 'שגיאה בניתוח הקובץ')
       setPreview(data)
       setStep(STEP.PREVIEW)
@@ -72,7 +74,9 @@ export default function Import() {
         headers: { Authorization: `Bearer ${token}` },
         body: fd,
       })
-      const data = await res.json()
+      const text = await res.text()
+      let data = {}
+      try { data = JSON.parse(text) } catch { throw new Error(`שגיאת שרת (${res.status}): ${text.slice(0, 120)}`) }
       if (!res.ok) throw new Error(data.detail || 'שגיאה בשמירה')
       setResult(data)
       setStep(STEP.DONE)
