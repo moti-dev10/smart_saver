@@ -33,6 +33,9 @@ COLUMN_MAP: Dict[str, str] = {
     # תמונה
     "תמונה": "image_url", "קישור תמונה": "image_url", "לוגו": "image_url",
     "image_url": "image_url", "image": "image_url", "img": "image_url", "photo": "image_url", "picture": "image_url",
+    # קישור לאתר (affiliate)
+    "קישור לאתר": "affiliate_url", "קישור": "affiliate_url", "אתר": "affiliate_url",
+    "affiliate_url": "affiliate_url", "link": "affiliate_url", "url": "affiliate_url", "product_url": "affiliate_url",
     # רשת / חנות
     "רשת": "retailer_name", "חנות": "retailer_name", "ספק": "retailer_name",
     "שם חנות": "retailer_name", "שם רשת": "retailer_name", "מוכר": "retailer_name",
@@ -158,7 +161,7 @@ def row_has_content(row: Dict[str, Any]) -> bool:
     return bool(
         (mapped.get("product_name") or mapped.get("product_id")) and
         (mapped.get("retailer_name") or mapped.get("retailer_id")) and
-        mapped.get("regular_price")
+        (mapped.get("regular_price") or mapped.get("deal_price"))
     )
 
 
@@ -255,9 +258,11 @@ async def save_import(
                     func.lower(Retailer.name) == rname.lower()
                 ).first()
                 if not retailer:
-                    retailer = Retailer(name=rname)
+                    retailer = Retailer(name=rname, affiliate_url=row.get("affiliate_url"))
                     db.add(retailer)
                     db.flush()
+                elif row.get("affiliate_url") and not retailer.affiliate_url:
+                    retailer.affiliate_url = row["affiliate_url"]
 
             if not retailer:
                 errors.append(f"שורה {i}: רשת לא נמצאה")
